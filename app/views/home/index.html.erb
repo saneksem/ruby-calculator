@@ -1,0 +1,17 @@
+<h1>Welcome to calculator</h1>
+
+<% unless @result.nil? %>
+    <p> Calculation result: <br/> <%= @result %> </p>
+<% end %>
+
+<%= form_for :calculator, url: { action: :index }, method: :get do |f|   %>
+    <%= number_field_tag :a, params[:a], :step => 0.01 %> <br/>
+    <%= number_field_tag :b, params[:b], :step => 0.01 %> </br>
+    <%= radio_button_tag :operation, :sum  %> <label for="sum">+</label> </br>
+    <%= radio_button_tag :operation, :subtr  %> <label for="subtr">-</label> </br>
+    <%= radio_button_tag :operation, :div  %> <label for="div">/</label> </br>
+    <%= radio_button_tag :operation, :sqr  %> <label for="sqr">Square root (1st operand)</label> </br>
+    <%= radio_button_tag :operation, :sin  %> <label for="sqr">Sinus (1st operand)</label> </br>
+    <%= radio_button_tag :operation, :cos  %> <label for="sqr">Cosinus (1st operand)</label> </br>
+    <%= f.submit 'Calculate' %>
+<% end %>

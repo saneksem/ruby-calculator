@@ -1,26 +1,30 @@
 
 module Calculator
+  def self.fix_int(a)
+    (a % 1)== 0 ? a.to_i : a
+  end
+
   def self.sum(a, b)
-    a.to_f + b.to_f
+    fix_int(a.to_f + b.to_f)
   end
 
   def self.subtr(a, b)
-    a.to_f - b.to_f
+    fix_int(a.to_f - b.to_f)
   end
 
   def self.div(a, b)
-    a.to_f / b.to_f
+    fix_int(a.to_f / b.to_f)
   end
 
   def self.sqr(a)
-    Math.sqrt(a.to_f)
+    fix_int(Math.sqrt(a.to_f))
   end
 
   def self.sin(a)
-    Math.sin(a.to_f)
+    fix_int(Math.sin(a.to_f))
   end
 
   def self.cos(a)
-    Math.cos(a.to_f)
+    fix_int(Math.cos(a.to_f))
   end
 end

@@ -1,17 +1,62 @@
-<h1>Welcome to calculator</h1>
+<head>
+  <link rel="stylesheet" type="text/css" href="../assets/application.css">
+</head>
 
-<% unless @result.nil? %>
-    <p> Calculation result: <br/> <%= @result %> </p>
-<% end %>
+<%= form_for :calculator, url: { action: :index }, method: :get do |f| %>
+    <table class="calculator" border="0px" cellspacing="5">
+      <tr>
+        <td colspan="6" align="center" bgcolor="#add8e6">Calculator</td>
+      </tr>
 
-<%= form_for :calculator, url: { action: :index }, method: :get do |f|   %>
-    <%= number_field_tag :a, params[:a], :step => 0.01 %> <br/>
-    <%= number_field_tag :b, params[:b], :step => 0.01 %> </br>
-    <%= radio_button_tag :operation, :sum  %> <label for="sum">+</label> </br>
-    <%= radio_button_tag :operation, :subtr  %> <label for="subtr">-</label> </br>
-    <%= radio_button_tag :operation, :div  %> <label for="div">/</label> </br>
-    <%= radio_button_tag :operation, :sqr  %> <label for="sqr">Square root (1st operand)</label> </br>
-    <%= radio_button_tag :operation, :sin  %> <label for="sqr">Sinus (1st operand)</label> </br>
-    <%= radio_button_tag :operation, :cos  %> <label for="sqr">Cosinus (1st operand)</label> </br>
-    <%= f.submit 'Calculate' %>
+      <tr>
+        <td colspan="3" width="50%" align="center"  bgcolor="#add8e6">Operand 1</td>
+        <td colspan="3" width="50%" align="center"  bgcolor="#add8e6">Operand 2</td>
+      </tr>
+
+      <tr>
+        <td colspan="3"><%= number_field_tag :a, params[:a], :step => 0.01 %></td>
+        <td colspan="3"><%= number_field_tag :b, params[:b], :step => 0.01 %></td>
+      </tr>
+
+      <tr>
+        <td colspan="3" align="center"  bgcolor="#add8e6">Unary operation</td>
+        <td colspan="3" align="center"  bgcolor="#add8e6">Binary operation</td>
+      </tr>
+
+      <tr>
+        <td>
+          <label for="operation_sqr"><%= radio_button_tag :operation, :sqr, params[:operation]=='sqr' %>Sqrt</label>
+        </td><td>
+          <label for="operation_sin"><%= radio_button_tag :operation, :sin, params[:operation]=='sin' %>Sin</label>
+        </td><td>
+          <label for="operation_cos"><%= radio_button_tag :operation, :cos, params[:operation]=='cos' %>Cos</label>
+        </td>
+
+        <td>
+          <label for="operation_sum"><%= radio_button_tag :operation, :sum, params[:operation]=='sum' %>+</label>
+        </td><td>
+          <label for="operation_subtr"><%= radio_button_tag :operation, :subtr, params[:operation]=='subtr' %>-</label>
+        </td><td>
+          <label for="operation_div"><%= radio_button_tag :operation, :div, params[:operation]=='div' %>/</label>
+        </td>
+      </tr>
+    </table>
+
+    <table class="calculator">
+      <tr>
+        <td align="center"><%= f.submit 'Calculate' %></td>
+      </tr>
+    </table>
+
+    <% unless @result.nil? %>
+        <table class="calculator">
+          <tr>
+            <td bgcolor="#add8e6" align="center">Result</td>
+          </tr>
+
+          <tr>
+            <td align="center"><%= @result %></td>
+          </tr>
+        </table>
+    <% end %>
 <% end %>

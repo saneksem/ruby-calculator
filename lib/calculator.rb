@@ -1,7 +1,20 @@
-
 module Calculator
+
   def self.fix_int(a)
     (a % 1)== 0 ? a.to_i : a
+  end
+
+  def self.get_operator(a)
+    case a
+      when 'sum'
+        '+'
+      when 'subtr'
+        '-'
+      when 'div'
+        '/'
+      else
+        a
+    end
   end
 
   def self.sum(a, b)
@@ -16,7 +29,7 @@ module Calculator
     fix_int(a.to_f / b.to_f)
   end
 
-  def self.sqr(a)
+  def self.sqrt(a)
     fix_int(Math.sqrt(a.to_f))
   end
 
@@ -27,4 +40,5 @@ module Calculator
   def self.cos(a)
     fix_int(Math.cos(a.to_f))
   end
+  
 end
